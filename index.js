@@ -34,7 +34,7 @@ client.on("messageCreate", async (message) => {
       const accountUrl = `https://api.henrikdev.xyz/valorant/v1/account/${username}/${tag}`;
       const headers = {
         accept: "application/json",
-        Authorization: "HDEV-0fe3cd31-144b-48b3-9841-02c1183ccbe1",
+        Authorization: process.env.API_KEY,
       };
 
       let response = await axios.get(accountUrl, { headers });
@@ -67,12 +67,12 @@ client.on("messageCreate", async (message) => {
         data.data.current_data.currenttierpatched
       ) {
         const currentRank = data.data.current_data.currenttierpatched;
-        const currentRankImage = data.data.current_data.images.large;
+        const currentRankImage = data.data.current_data.images.small;
         const currentElo = data.data.current_data.elo;
 
         const highestRank = data.data.highest_rank.patched_tier || "N/A";
         const highestRankImage = data.data.highest_rank.tier
-          ? `https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/${data.data.highest_rank.tier}/largeicon.png`
+          ? `https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/${data.data.highest_rank.tier}/smallicon.png`
           : "";
 
         const rankInfo = {
@@ -83,12 +83,15 @@ client.on("messageCreate", async (message) => {
           highest_rank_image: highestRankImage,
         };
 
-        message.channel.send(
-          `Current Rank: ${rankInfo.current_rank}\nCurrent ELO: ${rankInfo.current_elo}\nHighest Rank: ${rankInfo.highest_rank}`
-        );
-        // You can also send the images if the Discord bot has permissions to embed images.
-      } else {
-        message.channel.send("Rank data not found in API response");
+        const messageContent = `Current Rank: ${rankInfo.current_rank}\nCurrent ELO: ${rankInfo.current_elo}\nHighest Rank: ${rankInfo.highest_rank}`;
+        message.channel.send(messageContent);
+
+        if (currentRankImage) {
+          message.channel.send(currentRankImage);
+        }
+        if (highestRankImage) {
+          message.channel.send(highestRankImage);
+        }
       }
     } catch (error) {
       message.channel.send("An error occurred while fetching rank information");
