@@ -55,3 +55,25 @@ In a Discord channel, type:
 ![image](https://github.com/Abdi-Suufi/Valorant-Tracker-DiscordBot/assets/93520190/c9d26406-a399-42a7-b758-143589927737)
 
 
+## Contributing
+If you would like to contribute to this project, please follow these steps:
+
+1. **Fork the repository.**
+2. **Create a new branch:**
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+3. **Make your changes and commit them:**
+    ```bash
+    git commit -m 'Add some feature'
+    ```
+4. **Push to the branch:**
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+5. **Create a pull request.**
+
+## Contact
+- **Name:** Abdi Rahman Suufi
+- **Email:** abdisuufi123@gmail.com
+- **GitHub:** [Abdi-Suufi](https://github.com/Abdi-Suufi)
