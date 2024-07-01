@@ -1,6 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
-const { Client, GatewayIntentBits } = require("discord.js");
+const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -75,23 +75,31 @@ client.on("messageCreate", async (message) => {
           ? `https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/${data.data.highest_rank.tier}/smallicon.png`
           : "";
 
-        const rankInfo = {
-          current_rank: currentRank,
-          current_rank_image: currentRankImage,
-          current_elo: currentElo,
-          highest_rank: highestRank,
-          highest_rank_image: highestRankImage,
-        };
+        const embed = new EmbedBuilder()
+          .setTitle(`${usernameTag}'s Rank Info`)
+          .addFields(
+            { name: "Current Rank", value: currentRank, inline: false },
+            { name: "Current ELO", value: currentElo.toString(), inline: false }
+          )
+          .setThumbnail(currentRankImage);
 
-        const messageContent = `Current Rank: ${rankInfo.current_rank}\nCurrent ELO: ${rankInfo.current_elo}\nHighest Rank: ${rankInfo.highest_rank}`;
-        message.channel.send(messageContent);
+        if (highestRank !== "N/A") {
+          embed
+            .addFields({
+              name: "Highest Rank",
+              value: highestRank,
+              inline: false,
+            })
+            .setImage(highestRankImage);
+        } else {
+          embed.addFields({
+            name: "Highest Rank",
+            value: highestRank,
+            inline: false,
+          });
+        }
 
-        if (currentRankImage) {
-          message.channel.send(currentRankImage);
-        }
-        if (highestRankImage) {
-          message.channel.send(highestRankImage);
-        }
+        message.channel.send({ embeds: [embed] });
       }
     } catch (error) {
       message.channel.send("An error occurred while fetching rank information");
