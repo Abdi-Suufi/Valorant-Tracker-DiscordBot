@@ -140,14 +140,9 @@ client.on("messageCreate", async (message) => {
               name: "📊 Rank Progress",
               value: `${nextRankProgress}`,
               inline: true
-            },
-            {
-              name: "🎯 Last 5 Matches Stats",
-              value: `**Kills:** ${totalKills}\n**Deaths:** ${totalDeaths}\n**Assists:** ${totalAssists}\n**Matches:** ${matchCount}`,
-              inline: false
             }
           )
-          .setFooter({ text: `Region: ${region.toUpperCase()} • Last ${matchCount} matches` })
+          .setFooter({ text: `Region: ${region.toUpperCase()}` })
           .setTimestamp();
 
         if (highestRankImage) {
