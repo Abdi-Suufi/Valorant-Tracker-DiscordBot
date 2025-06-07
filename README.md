@@ -52,7 +52,7 @@ In a Discord channel, type:
 ```sh
 !rank Aybd1gh#3759
 ```
-![image](https://github.com/Abdi-Suufi/Valorant-Tracker-DiscordBot/assets/93520190/c9d26406-a399-42a7-b758-143589927737)
+![image](https://github.com/user-attachments/assets/1566f4ea-7ef1-4007-a0ae-d84c8f36c0db)
 
 
 ## Contributing
