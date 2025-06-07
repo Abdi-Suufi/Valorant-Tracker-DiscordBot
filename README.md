@@ -47,7 +47,7 @@ This is a Discord bot that allows users to track their Valorant rank and highest
 
 In a Discord channel, type:
 ```sh
-!rank Aybd1gh#3759
+!rank katakuri#99999
 ```
 ![image](https://github.com/user-attachments/assets/1566f4ea-7ef1-4007-a0ae-d84c8f36c0db)
 
