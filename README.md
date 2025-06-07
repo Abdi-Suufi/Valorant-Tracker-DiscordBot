@@ -24,9 +24,6 @@ This is a Discord bot that allows users to track their Valorant rank and highest
 2. Install dependencies:
     ```sh
     npm install
-    npm install discord.js
-    npm install axios
-    npm install dotenv
     ```
 
 3. Create a `.env` file in the root directory and add your Discord bot token and Henrik-3rd party API key:
