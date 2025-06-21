@@ -146,12 +146,12 @@ client.on("messageCreate", async (message) => {
           .addFields(
             { 
               name: "🏆 Current Rank", 
-              value: `${currentRank}\n${currentRankImage ? `[⠀](${currentRankImage})` : ''}`, 
+              value: `${currentRank}`, 
               inline: true 
             },
             {
               name: "⭐ Peak Rank",
-              value: `${highestRank}\n${highestRankImage ? `[⠀](${highestRankImage})` : ''}`,
+              value: `${highestRank}`,
               inline: true
             },
             {
@@ -163,8 +163,8 @@ client.on("messageCreate", async (message) => {
           .setFooter({ text: `Region: ${region.toUpperCase()}` })
           .setTimestamp();
 
-        if (highestRankImage) {
-          embed.setImage(highestRankImage);
+        if (currentRankImage) {
+          embed.setImage(currentRankImage);
         }
 
         // Send the embed without any buttons
