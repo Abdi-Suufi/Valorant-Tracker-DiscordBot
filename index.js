@@ -98,6 +98,8 @@ client.on("messageCreate", async (message) => {
         let totalWins = 0;
 
         matches.forEach(match => {
+          if (!match.players || !match.players.all_players) return; // skip this match if structure is missing
+
           const playerStats = match.players.all_players.find(p => 
             p.name.toLowerCase() === username.toLowerCase() && p.tag === tag
           );
