@@ -9,6 +9,22 @@ const client = new Client({
   ],
 });
 
+// --- ADD THESE LINES FOR THE EXPRESS SERVER ---
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000; // Render provides the PORT environment variable
+
+// Basic route to respond to Render's health checks and uptime pings
+app.get('/', (req, res) => {
+  res.send('Bot is alive!');
+});
+
+// Start the Express server
+app.listen(port, () => {
+  console.log(`Web server listening on port ${port}`);
+});
+// --- END OF ADDED LINES ---
+
 client.once("ready", () => {
   console.log("Bot is ready!");
 });
@@ -98,7 +114,7 @@ client.on("messageCreate", async (message) => {
         let totalWins = 0;
 
         matches.forEach(match => {
-          if (!match.players || !match.players.all_players) return; // skip this match if structure is missing
+          if (!match.players || !match.players.all_players) return; // skip if structure is missing
 
           const playerStats = match.players.all_players.find(p => 
             p.name.toLowerCase() === username.toLowerCase() && p.tag === tag
