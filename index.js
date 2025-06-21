@@ -167,38 +167,13 @@ client.on("messageCreate", async (message) => {
           embed.setImage(highestRankImage);
         }
 
-        // Create buttons for additional information
-        const row = new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setCustomId('recent_matches')
-              .setLabel('Recent Matches')
-              .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-              .setCustomId('agent_stats')
-              .setLabel('Agent Stats')
-              .setStyle(ButtonStyle.Secondary)
-          );
-
-        message.channel.send({ embeds: [embed], components: [row] });
+        // Send the embed without any buttons
+        message.channel.send({ embeds: [embed] });
       }
     } catch (error) {
       message.channel.send("An error occurred while fetching player information");
       console.error(error);
     }
-  }
-});
-
-// Handle button interactions
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isButton()) return;
-
-  if (interaction.customId === 'recent_matches') {
-    // TODO: Implement recent matches view
-    await interaction.reply({ content: 'Recent matches feature coming soon!', ephemeral: true });
-  } else if (interaction.customId === 'agent_stats') {
-    // TODO: Implement agent stats view
-    await interaction.reply({ content: 'Agent stats feature coming soon!', ephemeral: true });
   }
 });
 
